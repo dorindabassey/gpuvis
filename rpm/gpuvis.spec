@@ -12,9 +12,8 @@ Summary:        GPU Trace Visualizer
 License:        MIT
 URL:            https://github.com/mikesart/gpuvis
 Source0:	https://github.com/mikesart/gpuvis/archive/%{commit}/%{name}-%{commit}.tar.gz
-Source1:	https://github.com/Tencent/rapidjson/archive/1c2c8e085a8b2561dff17bedb689d2eb0609b689.tar.gz
-Source2:	%{name}.desktop
-Source3:	%{name}.metainfo.xml
+Source1:	%{name}.desktop
+Source2:	%{name}.metainfo.xml
 
 BuildRequires:  g++ gcc
 BuildRequires:	rapidjson-devel >= %{rapidjson_version}-%{rapidjson_release}
@@ -42,9 +41,9 @@ down Linux gpu and application performance issues.
 #enable desktop application
 desktop-file-install                                    \
 --dir=%{buildroot}%{_datadir}/applications/		\
-%{SOURCE2}
+%{SOURCE1}
 mkdir -p %{buildroot}%{_metainfodir}
-install -m 755 %{SOURCE3} %{buildroot}%{_metainfodir}/%{name}.metainfo.xml
+install -m 755 %{SOURCE2} %{buildroot}%{_metainfodir}/%{name}.metainfo.xml
 appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%{name}.metainfo.xml
 
 %files
