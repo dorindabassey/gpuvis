@@ -1,17 +1,14 @@
-%global commit 9439b5b1e8016f628b9c2f8e7bffb52a0dea193c
-%global shortcommit %(c=%{commit}; echo ${c:0:7})	
-%global commitdate 20220119
 %global rapidjson_version 1.1.0
 %global rapidjson_release 16
 
 Name:		gpuvis
-Version:        0
-Release:        1.%{commitdate}.git%{shortcommit}%{?dist}
+Version:        0.1
+Release:        1%{?dist}
 Summary:        GPU Trace Visualizer
 
 License:        MIT
 URL:            https://github.com/mikesart/gpuvis
-Source0:	https://github.com/mikesart/gpuvis/archive/%{commit}/%{name}-%{commit}.tar.gz
+Source0:	https://github.com/mikesart/%{name}/archive/refs/tags/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
 Source2:	%{name}.metainfo.xml
 
@@ -27,7 +24,7 @@ It is designed to work with trace-cmd captures and help track
 down Linux gpu and application performance issues.
 
 %prep
-%autosetup -n %{name}-%{commit}
+%autosetup
 
 
 %build
@@ -55,6 +52,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%{name}.metain
 
 
 %changelog
+* Mon Jan 24 2022 Dorinda Bassey <dbassey@redhat.com> - 0.1-1
+- v0 -> v0.1.
+
 * Wed Jan 19 2022 Dorinda Bassey <dbassey@redhat.com> - 0-1
 - fix Makefile Upstream, remove ppc64le support
 - Use meson build
