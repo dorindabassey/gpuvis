@@ -8,7 +8,7 @@ Summary:        GPU Trace Visualizer
 
 License:        MIT
 URL:            https://github.com/mikesart/gpuvis
-Source0:	https://github.com/mikesart/%{name}/archive/refs/tags/%{name}-%{version}.tar.gz
+Source0:	https://github.com/mikesart/%{name}/archive/refs/tags/v%{version}/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
 Source2:	%{name}.metainfo.xml
 
