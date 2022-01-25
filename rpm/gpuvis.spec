@@ -1,6 +1,3 @@
-%global rapidjson_version 1.1.0
-%global rapidjson_release 16
-
 Name:		gpuvis
 Version:        0.1
 Release:        1%{?dist}
@@ -13,9 +10,9 @@ Source1:	%{name}.desktop
 Source2:	%{name}.metainfo.xml
 
 BuildRequires:  g++ gcc
-BuildRequires:	rapidjson-devel >= %{rapidjson_version}-%{rapidjson_release}
-BuildRequires:  desktop-file-utils libappstream-glib rapidjson
-BuildRequires:  meson SDL2-devel freetype-devel gtk3-devel libstdc++-static libstdc++-devel glibc-static pkg-config
+BuildRequires:	rapidjson-devel
+BuildRequires:  desktop-file-utils libappstream-glib
+BuildRequires:  meson SDL2-devel freetype-devel gtk3-devel libstdc++-devel pkg-config
 
 
 %description
