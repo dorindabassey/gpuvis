@@ -51,6 +51,9 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%{name}.metain
 
 
 %changelog
+* Thu Jan 27 2022 Dorinda Bassey <dbassey@redhat.com> - 0.1-1
+-Add patch to handle RapidJSON dependency in meson build
+
 * Mon Jan 24 2022 Dorinda Bassey <dbassey@redhat.com> - 0.1-1
 - v0 -> v0.1.
 
