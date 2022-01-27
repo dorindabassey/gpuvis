@@ -14,6 +14,8 @@ BuildRequires:	rapidjson-devel
 BuildRequires:  desktop-file-utils libappstream-glib
 BuildRequires:  meson SDL2-devel freetype-devel gtk3-devel libstdc++-devel pkg-config
 
+Patch0: https://github.com/mikesart/gpuvis/commit/5927bed25854f61eafac144837e2bfba60c721e3.patch
+Patch1: https://github.com/mikesart/gpuvis/commit/38ad6960056bd8e0c15aa75478abfd837734dcaf.patch
 
 %description
 Gpuvis is a Linux GPU profiler similar to GPUView on Windows. 
@@ -21,7 +23,7 @@ It is designed to work with trace-cmd captures and help track
 down Linux gpu and application performance issues.
 
 %prep
-%autosetup
+%autosetup -p1
 
 
 %build
