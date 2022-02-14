@@ -1,3 +1,7 @@
+%global commit 02b534e7d918501a55147effcf5535638a6f5a0f
+%global shortcommit %(c=%{commit}; echo ${c:0:7})	
+%global commit_date 20220213
+
 Name:		gpuvis
 Version:        0.1
 Release:        1%{?dist}
@@ -5,17 +9,16 @@ Summary:        GPU Trace Visualizer
 
 License:        MIT
 URL:            https://github.com/mikesart/gpuvis
-Source0:	https://github.com/mikesart/%{name}/archive/refs/tags/v%{version}/%{name}-%{version}.tar.gz
-Source1:	%{name}.desktop
-Source2:	%{name}.metainfo.xml
+Source0:	https://github.com/mikesart/gpuvis/archive/%{name}-%{commit}.tar.gz
+Source1:	com.github.%{name}.Gpuvis.desktop
+Source2:	com.github.%{name}.Gpuvis.metainfo.xml
+Source3:	com.github.%{name}.Gpuvis.svg
 
 BuildRequires:  g++ gcc
 BuildRequires:	rapidjson-devel
 BuildRequires:  desktop-file-utils libappstream-glib
 BuildRequires:  meson SDL2-devel freetype-devel gtk3-devel libstdc++-devel pkg-config
 
-Patch0: https://github.com/mikesart/gpuvis/commit/5927bed25854f61eafac144837e2bfba60c721e3.patch
-Patch1: https://github.com/mikesart/gpuvis/commit/38ad6960056bd8e0c15aa75478abfd837734dcaf.patch
 
 %description
 Gpuvis is a Linux GPU profiler similar to GPUView on Windows. 
@@ -23,7 +26,7 @@ It is designed to work with trace-cmd captures and help track
 down Linux gpu and application performance issues.
 
 %prep
-%autosetup -p1
+%autosetup -p1 -n %{name}-%{commit}
 
 
 %build
@@ -38,21 +41,27 @@ down Linux gpu and application performance issues.
 desktop-file-install                                    \
 --dir=%{buildroot}%{_datadir}/applications/		\
 %{SOURCE1}
-mkdir -p %{buildroot}%{_metainfodir}
+mkdir -p %{buildroot}%{_metainfodir} %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/
 install -m 755 %{SOURCE2} %{buildroot}%{_metainfodir}/%{name}.metainfo.xml
 appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%{name}.metainfo.xml
+install -m 644 %{SOURCE3} %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/com.github.%{name}.Gpuvis.svg
 
 %files
 %license LICENSE
 %{_bindir}/%{name}
-%{_datadir}/applications/%{name}.desktop
+%{_datadir}/applications/com.github.%{name}.Gpuvis.desktop
 %{_datadir}/metainfo/%{name}.metainfo.xml
+%{_datadir}/icons/hicolor/scalable/apps/com.github.%{name}.Gpuvis.svg
 %doc README.md
 
 
 %changelog
+* Mon Feb 14 2022 Dorinda Bassey <dbassey@redhat.com> - 0.1-1
+- Add Icon
+- Fetch upstream
+
 * Thu Jan 27 2022 Dorinda Bassey <dbassey@redhat.com> - 0.1-1
--Add patch to handle RapidJSON dependency in meson build
+- Add patch to handle RapidJSON dependency in meson build
 
 * Mon Jan 24 2022 Dorinda Bassey <dbassey@redhat.com> - 0.1-1
 - v0 -> v0.1.
